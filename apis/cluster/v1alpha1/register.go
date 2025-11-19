@@ -7,7 +7,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "template.crossplane.io"
+	Group   = "mimir.dip.io"
 	Version = "v1alpha1"
 )
 

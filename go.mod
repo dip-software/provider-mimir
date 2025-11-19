@@ -1,6 +1,6 @@
-module github.com/crossplane/upjet-provider-template
+module github.com/dip-software/provider-mimir
 
-go 1.24.10
+go 1.24.7
 
 require (
 	dario.cat/mergo v1.0.2

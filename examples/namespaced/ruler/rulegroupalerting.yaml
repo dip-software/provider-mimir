@@ -1,0 +1,21 @@
+apiVersion: ruler.mimir.m.dip.io/v1beta1
+kind: RuleGroupAlerting
+metadata:
+  name: example-alerting-rules-ns
+  namespace: default
+spec:
+  forProvider:
+    name: example_alerts
+    namespace: default
+    interval: 30s
+    rule:
+    - alert: InstanceDown
+      expr: up == 0
+      for: 5m
+      annotations:
+        summary: "Instance {{ $labels.instance }} is down"
+      labels:
+        severity: critical
+  providerConfigRef:
+    kind: ClusterProviderConfig
+    name: default

@@ -1,0 +1,16 @@
+apiVersion: ruler.mimir.m.dip.io/v1beta1
+kind: RuleGroupRecording
+metadata:
+  name: example-recording-rules-ns
+  namespace: default
+spec:
+  forProvider:
+    name: example_recording
+    namespace: default
+    interval: 30s
+    rule:
+    - expr: up
+      record: job:up:count
+  providerConfigRef:
+    kind: ClusterProviderConfig
+    name: default

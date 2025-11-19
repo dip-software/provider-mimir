@@ -1,0 +1,15 @@
+apiVersion: alertmanager.mimir.m.dip.io/v1beta1
+kind: AlertmanagerConfig
+metadata:
+  name: example-alertmanager-config-ns
+  namespace: default
+spec:
+  forProvider:
+    # Configuration for Grafana Mimir Alertmanager
+    receiver:
+    - name: default
+    route:
+    - receiver: default
+  providerConfigRef:
+    kind: ClusterProviderConfig
+    name: default

@@ -7,17 +7,15 @@ import (
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"null_resource": idWithStub(),
-}
+	// Alertmanager configuration - uses org_id as the identifier
+	"mimir_alertmanager_config": config.IdentifierFromProvider,
 
-func idWithStub() config.ExternalName {
-	e := config.IdentifierFromProvider
-	e.GetExternalNameFn = func(tfstate map[string]any) (string, error) {
-		en, _ := config.IDAsExternalName(tfstate)
-		return en, nil
-	}
-	return e
+	// Rule groups - use a composite identifier: namespace/name
+	"mimir_rule_group_alerting":  config.TemplatedStringAsIdentifier("name", "{{ .parameters.namespace }}/{{ .external_name }}"),
+	"mimir_rule_group_recording": config.TemplatedStringAsIdentifier("name", "{{ .parameters.namespace }}/{{ .external_name }}"),
+
+	// Rules resource - manages multiple rule groups from a file
+	"mimir_rules": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
