@@ -64,48 +64,37 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 
 		// Set credentials in Terraform provider configuration.
 		// Reference: https://registry.terraform.io/providers/fgouteroux/mimir/latest/docs
-		ps.Configuration = map[string]any{}
-
-		// Required field
-		if v, ok := creds[keyOrgID]; ok {
-			ps.Configuration[keyOrgID] = v
-		}
-
-		// Optional URI fields
-		if v, ok := creds[keyURI]; ok {
-			ps.Configuration[keyURI] = v
-		}
-		if v, ok := creds[keyRulerURI]; ok {
-			ps.Configuration[keyRulerURI] = v
-		}
-		if v, ok := creds[keyAlertmanagerURI]; ok {
-			ps.Configuration[keyAlertmanagerURI] = v
-		}
-		if v, ok := creds[keyDistributorURI]; ok {
-			ps.Configuration[keyDistributorURI] = v
-		}
-
-		// Authentication: token OR username/password
-		if v, ok := creds[keyToken]; ok {
-			ps.Configuration[keyToken] = v
-		}
-		if v, ok := creds[keyUsername]; ok {
-			ps.Configuration[keyUsername] = v
-		}
-		if v, ok := creds[keyPassword]; ok {
-			ps.Configuration[keyPassword] = v
-		}
-
-		// Optional connection settings
-		if v, ok := creds[keyInsecure]; ok {
-			ps.Configuration[keyInsecure] = v
-		}
-		if v, ok := creds[keyProxyURL]; ok {
-			ps.Configuration[keyProxyURL] = v
-		}
+		ps.Configuration = populateMimirConfig(creds)
 
 		return ps, nil
 	}
+}
+
+// populateMimirConfig populates the Mimir provider configuration from credentials
+func populateMimirConfig(creds map[string]string) map[string]any {
+	config := map[string]any{}
+
+	// List of configuration keys to copy from credentials
+	configKeys := []string{
+		keyOrgID,
+		keyURI,
+		keyRulerURI,
+		keyAlertmanagerURI,
+		keyDistributorURI,
+		keyToken,
+		keyUsername,
+		keyPassword,
+		keyInsecure,
+		keyProxyURL,
+	}
+
+	for _, key := range configKeys {
+		if v, ok := creds[key]; ok {
+			config[key] = v
+		}
+	}
+
+	return config
 }
 
 func toSharedPCSpec(pc *clusterv1beta1.ProviderConfig) (*namespacedv1beta1.ProviderConfigSpec, error) {
