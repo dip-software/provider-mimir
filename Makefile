@@ -14,7 +14,7 @@ export TERRAFORM_PROVIDER_SOURCE ?= fgouteroux/mimir
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/fgouteroux/terraform-provider-mimir
 export TERRAFORM_PROVIDER_VERSION ?= 1.0.9
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-mimir
-export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://releases.hashicorp.com/$(TERRAFORM_PROVIDER_DOWNLOAD_NAME)/$(TERRAFORM_PROVIDER_VERSION)
+export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://github.com/fgouteroux/terraform-provider-mimir/releases/download/v$(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-mimir_v1.0.9_x5
 export TERRAFORM_DOCS_PATH ?= docs/resources
 
