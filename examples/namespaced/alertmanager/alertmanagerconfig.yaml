@@ -1,5 +1,5 @@
-apiVersion: alertmanager.mimir.m.dip.io/v1beta1
-kind: AlertmanagerConfig
+apiVersion: alertmanager.mimir.m.dip.io/v1alpha1
+kind: Config
 metadata:
   name: example-alertmanager-config-ns
   namespace: default

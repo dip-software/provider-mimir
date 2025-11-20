@@ -1,5 +1,5 @@
-apiVersion: ruler.mimir.m.dip.io/v1beta1
-kind: RuleGroupRecording
+apiVersion: ruler.mimir.m.dip.io/v1alpha1
+kind: GroupRecording
 metadata:
   name: example-recording-rules-ns
   namespace: default

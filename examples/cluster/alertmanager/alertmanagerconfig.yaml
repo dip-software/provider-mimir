@@ -1,5 +1,5 @@
-apiVersion: alertmanager.mimir.dip.io/v1beta1
-kind: AlertmanagerConfig
+apiVersion: alertmanager.mimir.dip.io/v1alpha1
+kind: Config
 metadata:
   name: example-alertmanager-config
 spec:

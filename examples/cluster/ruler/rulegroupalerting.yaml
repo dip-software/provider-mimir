@@ -1,5 +1,5 @@
-apiVersion: ruler.mimir.dip.io/v1beta1
-kind: RuleGroupAlerting
+apiVersion: ruler.mimir.dip.io/v1alpha1
+kind: GroupAlerting
 metadata:
   name: example-alerting-rules
 spec:

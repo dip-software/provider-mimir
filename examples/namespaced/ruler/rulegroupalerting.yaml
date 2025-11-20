@@ -1,5 +1,5 @@
-apiVersion: ruler.mimir.m.dip.io/v1beta1
-kind: RuleGroupAlerting
+apiVersion: ruler.mimir.m.dip.io/v1alpha1
+kind: GroupAlerting
 metadata:
   name: example-alerting-rules-ns
   namespace: default
